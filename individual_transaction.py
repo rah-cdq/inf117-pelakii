@@ -20,4 +20,20 @@ stripe.PaymentIntent.modify(
   metadata={"tax_transaction": "{{TAX_TRANSACTION}}"},
 )
 
+def update_payment(cart):
+  paymentIntent = await stripe.PaymentIntent.update(cart.paymentIntent)
+  currency = cart.currency(val, symbol=True, grouping=False, international=False),
+  amount = calculation.amount_total,
+  metadata = {tax_calculation: calculation.id},
+  automatic_payment_methods = {enabled: true}
+  
+  
+def calculate_total(cart):
+  lineItems = cart.itemsize()
+  total = 0
+  for item in cart.items:
+    total += item.price()
+    
+  return total
+
 stripe.tax.customer_tax_location_invalid()
