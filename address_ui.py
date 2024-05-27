@@ -14,6 +14,8 @@ def submit_address():
                             f"Street Address: {street}\nCity: {city}\nState: {state}\nPostal Code: {postal_code}\nCountry: {country}")
     else:
         messagebox.showwarning("Input Error", "Please enter all parts of the address.")
+    print(street)
+    return [street, city, state, postal_code, country]
 
 # Create the main application window
 root = tk.Tk()
