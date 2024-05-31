@@ -1,16 +1,20 @@
 import address_ui
-import stripe_tax
+import stripe
+import tkinter as tk
+stripe.api_key = ""
 
 
 if __name__ == "__main__":
-    userAdress = address_ui.run_address_ui()
-    print(userAdress)
+  root = tk.Tk()
+  app = address_ui.UserAddress(root)
+  root.mainloop()
 
-    stripe.tax.Calculation.create(
-currency="usd",
+
+  stripe.tax.Calculation.create(
+  currency="usd",
   line_items=[{"amount": 1000, "reference": "L1"}],
   customer_details={
-    "address": userAdress,
+    "address": app.address_current,
     "address_source": "shipping",
   },
-)
+  )

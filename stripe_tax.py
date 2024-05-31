@@ -5,7 +5,6 @@ import stripe
 import address_ui
 stripe.api_key = ""
 
-
 stripe.tax.Calculation.create(
   currency="usd",
   line_items=[{"amount": 1000, "reference": "L1"}],
