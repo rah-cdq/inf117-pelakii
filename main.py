@@ -3,15 +3,19 @@ import stripe
 import tkinter as tk
 stripe.api_key = ""
 
-
 if __name__ == "__main__":
   root = tk.Tk()
   app = address_ui.UserAddress(root)
   root.mainloop()
 
   #stripe.tax.Settings.retrieve(stripe_account='{{CONNECTED_ACCOUNT_ID}}')
+  '''
+  stripe.tax.Settings.modify(
+  defaults={"tax_code": "txcd_10000000", "tax_behavior": "inclusive"},
+  head_office={"address": {"country": "DE"}},
+  )'''
 
-  stripe.tax.Calculation.create(
+  calc_1 = stripe.tax.Calculation.create(
     currency="usd",
     line_items=[{"amount": 1000, "reference": "L1"}],
     customer_details={
@@ -25,3 +29,4 @@ if __name__ == "__main__":
       "address_source": "shipping",
     },
   )
+  print(calc_1.tax_amount_exclusive)
