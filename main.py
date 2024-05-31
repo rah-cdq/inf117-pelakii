@@ -9,12 +9,14 @@ if __name__ == "__main__":
   app = address_ui.UserAddress(root)
   root.mainloop()
 
-
-  stripe.tax.Calculation.create(
-  currency="usd",
-  line_items=[{"amount": 1000, "reference": "L1"}],
-  customer_details={
-    "address": app.address_current,
-    "address_source": "shipping",
-  },
-  )
+  try:
+    stripe.tax.Calculation.create(
+    currency="usd",
+    line_items=[{"amount": 1000, "reference": "L1"}],
+    customer_details={
+      "address": app.address_current,
+      "address_source": "shipping",
+    },
+    )
+  except stripe._error.InvalidRequestError:
+    print("Invalid Address")
