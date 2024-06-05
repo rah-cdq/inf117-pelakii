@@ -13,4 +13,4 @@ def create_checkout_session():
     )
   except Exception as e:
     return "error"
-  return redirect(checkou_session.url, code=303)
+  return stripe.redirect(checkout_session.url, code=303)
