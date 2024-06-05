@@ -1,4 +1,4 @@
-
+# This prints out the details of transaction to console, for debug purposes
 
 def printReceipt(receipt):
     print("item cost: " + str(receipt["item cost"]))

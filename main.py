@@ -7,21 +7,21 @@ import json
 import createMockAddress
 import printRecieptConsole
 
+# Comments that don't start with a space are removed Debug code
 if __name__ == "__main__":
   #root = tk.Tk()
   #app = address_ui.UserAddress(root)
   #root.mainloop()
 
-  #stripe.tax.Settings.retrieve(stripe_account='{{CONNECTED_ACCOUNT_ID}}')
   try:
     #createMockAddress.writeToJson
 
+    # Reads the address dictionary
     with open('address.json', 'r') as json_file:
-    
       curAddress = json.load(json_file)
 
 
-
+    # Creates a mock calculation for a snack box on the Stripe Pelakii server
     calc_1 = stripe.tax.Calculation.create(
       currency="usd",
       line_items=[
@@ -39,10 +39,12 @@ if __name__ == "__main__":
       },
     )
 
+    # Calculates some numbers not given directly by stripe tax
     subtotal = calc_1.amount_total - calc_1.tax_amount_exclusive
     taxPercent = calc_1.tax_amount_exclusive/(subtotal-calc_1.shipping_cost["amount"])
     formatted_taxPercent = float("%.3f" % taxPercent)*100
 
+    # Takes transaction info into a dictionary to be written to JSON file
     transactionDict= {
       "item cost": (subtotal-calc_1.shipping_cost["amount"]),
       "shipping": calc_1.shipping_cost["amount"],
@@ -54,7 +56,7 @@ if __name__ == "__main__":
     
     printRecieptConsole.printReceipt(transactionDict)
     
-
+    # Writes transaction to JSON file, to be sent to front end
     with open('receipt.json', 'w') as json_file:
         json.dump(transactionDict, json_file)
 

@@ -1,6 +1,6 @@
 import json
 
-# Step 2: Create a dictionary
+# Creates a adress dictionary tied to an address for a WAWA in Orlando
 def writeToJson():
     my_dict = {
             "line1":"3100 S Orange Ave",
@@ -10,6 +10,6 @@ def writeToJson():
             "country": "US",
             }
 
-    # Step 3: Open the file in write mode to reset it and write the dictionary to the JSON file
+    # Opens the address JSON file, wipes it, writes the adress dictionary
     with open('address.json', 'w') as json_file:
         json.dump(my_dict, json_file)
