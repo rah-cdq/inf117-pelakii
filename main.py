@@ -17,24 +17,18 @@ if __name__ == "__main__":
     #createMockAddress.writeToJson
 
     # Reads the address dictionary
-    with open('address.json', 'r') as json_file:
-      curAddress = json.load(json_file)
+    with open('checkout.json', 'r') as json_file:
+      curCheckout = json.load(json_file)
 
 
     # Creates a mock calculation for a snack box on the Stripe Pelakii server
     calc_1 = stripe.tax.Calculation.create(
       currency="usd",
-      line_items=[
-    {
-      "amount": 1000,
-      "tax_code": "txcd_99999999",
-      "reference": "Pelakii Snack Box",
-    },
-  ],
-  shipping_cost={"amount": 300},
+      line_items=curCheckout["cart"],
+  shipping_cost={"amount": curCheckout["shipping"]},
   expand=["line_items"],
       customer_details={
-        "address": curAddress,
+        "address": curCheckout["address"],
         "address_source": "shipping",
       },
     )
