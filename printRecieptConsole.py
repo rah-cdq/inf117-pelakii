@@ -7,7 +7,9 @@ def printReceipt(receipt):
     print("subtotal: ", end="")
     print(receipt["subtotal"])
     print("Tax %: ", end="")
-    print(str(float("%.3f" % receipt["taxPercent"])*100))
+    unformatedTaxPrecent = receipt["taxPercent"]
+    percentage = round(unformatedTaxPrecent * 100, 2)
+    print(f"{percentage:.2f}%")
     print("Tax amnt: ", end="")
     print(receipt["taxAmnt"])
     print("______________________________+")
