@@ -5,9 +5,10 @@ from tkinter import messagebox
 
 class UserAddress:
     def __init__(self, root):
+        
+        # Runs UI for adress entry ()
         self.root = root
         self.address_current = []
-
         self.root.title("Address Input")
 
         # Creates labels and txt entry fields for each part of the address

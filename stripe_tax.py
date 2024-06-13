@@ -1,4 +1,4 @@
-#This file serves as a way to modifu stripe settings via code
+#This file serves as a way to modify stripe settings via code
 
 # Set your secret key. Remember to switch to your live secret key in production.
 # See your keys here: https://dashboard.stripe.com/apikeys
