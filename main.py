@@ -23,13 +23,12 @@ if __name__ == "__main__":
   try:
     # Runs Script to create a mock address (testing)
     #createMockAddress.writeToJson
-
+# JSON method start
     # Reads the address dictionary
-    
     with open('checkout.json', 'r') as json_file:
       curCheckout = json.load(json_file)
     addressDict = curCheckout["address"]
-
+# JSON method end
 
     # Creates a mock calculation for a snack box on the Stripe Pelakii server, UI mode only
     '''curCheckout = {"address":{"line1": addressDict["line1"], "city": addressDict["city"], "state": addressDict["state"], "postal_code": addressDict["postal_code"], "country": addressDict["country"]}, 
